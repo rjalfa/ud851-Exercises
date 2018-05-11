@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     /*
@@ -14,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
      * being posted.
      */
     private static final String TAG = MainActivity.class.getSimpleName();
-
+    private static ArrayList<String> mLifecyleCallbacks = new ArrayList<>();
     /*
      * This constant String will be used to store the content of the TextView used to display the
      * list of callbacks. The reason we are storing the contents of the TextView is so that you can
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private TextView mLifecycleDisplay;
 
-    // TODO (1) Declare and instantiate a static ArrayList of Strings called mLifecycleCallbacks
+    // COMPLETE (1) Declare and instantiate a static ArrayList of Strings called mLifecycleCallbacks
 
     /**
      * Called when the activity is first created. This is where you should do all of your normal
@@ -71,10 +73,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // TODO (4) Iterate backwards through mLifecycleCallbacks, appending each String and a newline to mLifecycleDisplay
-
-        // TODO (5) Clear mLifecycleCallbacks after iterating through it
-
+        // COMPLETE (4) Iterate backwards through mLifecycleCallbacks, appending each String and a newline to mLifecycleDisplay
+        for(int i = mLifecyleCallbacks.size(); i > 0; i --) {
+            mLifecycleDisplay.append(mLifecyleCallbacks.get(i - 1) + "\n");
+        }
+        // COMPLETE (5) Clear mLifecycleCallbacks after iterating through it
+        mLifecyleCallbacks.clear();
         logAndAppend(ON_CREATE);
     }
 
@@ -133,8 +137,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
 
-        // TODO (2) Add the ON_STOP String to the front of mLifecycleCallbacks
-
+        // COMPLETE (2) Add the ON_STOP String to the front of mLifecycleCallbacks
+        mLifecyleCallbacks.add(0, ON_STOP);
         logAndAppend(ON_STOP);
     }
 
@@ -160,8 +164,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        // TODO (3) Add the ON_DESTROY String to the front of mLifecycleCallbacks
-
+        // COMPLETE (3) Add the ON_DESTROY String to the front of mLifecycleCallbacks
+        mLifecyleCallbacks.add(0, ON_DESTROY);
         logAndAppend(ON_DESTROY);
     }
 
