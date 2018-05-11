@@ -15,10 +15,14 @@
  */
 package com.example.android.implicitintents;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
+
+import java.net.URI;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,10 +39,10 @@ public class MainActivity extends AppCompatActivity {
      * @param v Button that was clicked.
      */
     public void onClickOpenWebpageButton(View v) {
-        // TODO (5) Create a String that contains a URL ( make sure it starts with http:// or https:// )
-
-        // TODO (6) Replace the Toast with a call to openWebPage, passing in the URL String from the previous step
-        Toast.makeText(this, "TODO: Open a web page when this button is clicked", Toast.LENGTH_SHORT).show();
+        // COMPLETE (5) Create a String that contains a URL ( make sure it starts with http:// or https:// )
+        String url = "https://www.udacity.com";
+        // COMPLETE (6) Replace the Toast with a call to openWebPage, passing in the URL String from the previous step
+        openWebpage(url);
     }
 
     /**
@@ -77,12 +81,16 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
-    // TODO (1) Create a method called openWebPage that accepts a String as a parameter
+    // COMPLETE (1) Create a method called openWebPage that accepts a String as a parameter
     // Do steps 2 - 4 within openWebPage
-
-        // TODO (2) Use Uri.parse to parse the String into a Uri
-
-        // TODO (3) Create an Intent with Intent.ACTION_VIEW and the webpage Uri as parameters
-
-        // TODO (4) Verify that this Intent can be launched and then call startActivity
+    private void openWebpage(String url) {
+        // COMPLETE (2) Use Uri.parse to parse the String into a Uri
+        Uri webpage = Uri.parse(url);
+        // COMPLETE (3) Create an Intent with Intent.ACTION_VIEW and the webpage Uri as parameters
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        // COMPLETE (4) Verify that this Intent can be launched and then call startActivity
+        if(intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
 }
