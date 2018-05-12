@@ -24,5 +24,11 @@
         android:title="@string/pref_show_treble_label" />
 
     <!-- TODO (1) Add a list preference -->
-
+    <ListPreference
+        android:title="@string/pref_color_label"
+        android:key="@string/pref_color_key"
+        android:entries="@array/pref_shape_color_entries"
+        android:entryValues="@array/pref_shape_color_entryValues"
+        android:defaultValue="@string/pref_color_red_value"
+        />
 </PreferenceScreen>
